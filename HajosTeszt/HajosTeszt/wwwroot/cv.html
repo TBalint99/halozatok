@@ -3,67 +3,71 @@
 <head>
     <meta charset="utf-8" />
     <title>Bemutatkozás</title>
-
-    <style>
-        img{
-            height: 40%;
-            width: 40%;
-        }
-    </style>
+    <link href="stiluslap.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&family=Shippori+Mincho+B1&display=swap" rel="stylesheet">
 </head>
 <body>
-    <p>
-        <h1>Hello! Ez az én bemutatkozásom...</h1>
-    </p>
-    <p>
-        <h2>Tartalomjegyzék</h2>
-        <ul>
-            <li><a href="#bemutatkozas">Bemutatkozás</a></li>
-            <li><a href="#hobbik">Hobbijaim</a></li>
-            <li><a href="#skills">Készségeim</a></li>
-        </ul>
-        <hr />
-    </p>
-    <p>
-        <h3><a id="bemutatkozas">Ki vagyok én?</a></h3>
-        <br />
-        Takács Bálint vagyok, a Budapesti Corvinus Egyetem másodéves hallgatója. Jelenleg egy HR Startup vállalatnál vagyok
-        IT Projekt Menedzser, továbbá a Business IT Club - Corvinus nevű diákszervezetben vagyok Sales koordinátor. Az időm nagy részében fejlesztem magam, és
-        folyamatosan új tanulási lehetőséget keresek. Szeretek edzeni, ugyanis az nem csak testileg, de szellemileg is felfrissít.
-    </p>
-    <hr />
-    <p>
-        <h3><a id="hobbik">Hobbijaim</a></h3>
-        <ol>
-            <li>Edzés</li>
-            <li>Üzleti/gazdasági könyvek olvasása</li>
-            <li>Programozás</li>
-            <li>Diákszervezeti tevékenységek</li>
-            <li>Tőzsde</li>
-            <li>Síelés</li>
-        </ol>
-    </p>
-    <p>
-        <h3><a id="skills">Készségeim</a></h3>
-        <dl>
-            <dt>IT jellegű</dt>
-            <dd>Python</dd>
-            <dd>JavaScript</dd>
-            <dd>HTML</dd>
-            <dd>CSS</dd>
-            <dd>C#</dd>
-            <dd>VBA</dd>
+    <div id="outer-box">
+        <p>
+            <h1>Hello! Ez az én bemutatkozásom...</h1>
+        </p>
+        <p>
+            <h2>Tartalomjegyzék</h2>
+            <ul>
+                <li><a href="#bemutatkozas">Bemutatkozás</a></li>
+                <li><a href="#hobbik">Hobbijaim</a></li>
+                <li><a href="#skills">Készségeim</a></li>
+            </ul>
+            <hr />
+        </p>
+        <p>
+            <h3><a id="bemutatkozas">Ki vagyok én?</a></h3>
+            <br />
+            Takács Bálint vagyok, a Budapesti Corvinus Egyetem másodéves hallgatója. Jelenleg egy HR Startup vállalatnál vagyok
+            IT Projekt Menedzser, továbbá a Business IT Club - Corvinus nevű diákszervezetben vagyok Sales koordinátor. Az időm nagy részében fejlesztem magam, és
+            folyamatosan új tanulási lehetőséget keresek. Szeretek edzeni, ugyanis az nem csak testileg, de szellemileg is felfrissít.
+        </p>
+        <hr class="masodik-hr" />
+        <div id="center">
+            <div id="box1">
+                <p>
+                    <h3><a id="hobbik">Hobbijaim</a></h3>
+                    <ol>
+                        <li>Edzés</li>
+                        <li>Üzleti/gazdasági könyvek olvasása</li>
+                        <li>Programozás</li>
+                        <li>Diákszervezeti tevékenységek</li>
+                        <li>Tőzsde</li>
+                        <li>Síelés</li>
+                    </ol>
+                </p>
+            </div>
+            <div id="box2">
+                <p>
+                    <h3><a id="skills">Készségeim</a></h3>
+                    <dl>
+                        <dt>IT jellegű</dt>
+                        <dd>Python</dd>
+                        <dd>JavaScript</dd>
+                        <dd>HTML</dd>
+                        <dd>CSS</dd>
+                        <dd>C#</dd>
+                        <dd>VBA</dd>
 
-            <dt>Üzleti</dt>
-            <dd>Projektmenedzsment</dd>
-            <dd>Stratégia tervezés</dd>
-            <dd>Értékesítési - Sales</dd>
-            <dd>Online marketing</dd>
-            <dd>Design thinking</dd>
-        </dl>
-    </p>
-    <a href="https://www.linkedin.com/in/takacs-balint/" target="_blank">
-        <img src="kep.jpg" alt="Profilkép" />
-    </a>
+                        <dt>Üzleti</dt>
+                        <dd>Projektmenedzsment</dd>
+                        <dd>Stratégia tervezés</dd>
+                        <dd>Értékesítési - Sales</dd>
+                        <dd>Online marketing</dd>
+                        <dd>Design thinking</dd>
+                    </dl>
+                </p>
+            </div>
+        </div>
+        <a href="https://www.linkedin.com/in/takacs-balint/" target="_blank">
+            <img class="profile-picture" src="kep.jpg" alt="Profilkép" />
+        </a>
+    </div>
 </body>
 </html>
