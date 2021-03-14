@@ -13,7 +13,7 @@ div {
 
 #kulso {
     height: 100%;
-    display: flex;
+    display: flex; /*Ha van flex-direction, akkor kell a display: flex; is!*/
     flex-direction: column;
     /* offset-x | offset-y | blur-radius | spread-radius | color */
     box-shadow: 1px 2px 1px 5px #888888;
@@ -26,13 +26,15 @@ div {
 #kozepso {
     display: flex;
     flex-direction: row;
-    flex-grow: 1 /*Ha van lehetőség növekedni, növekedni fog*/
+    flex-grow: 1 /*Ha van lehetőség növekedni, növekedni fog, mivel ez fogja kitölteni a rendelkezésre álló helyet*/
 }
 
 #valaszok{
-    flex-grow: 1;
-    flex-shrink: 1;
+    flex-grow: 1; /*Ha nincs kép, akkor csak a válaszok jelennek meg, mivel itt a flex-grow: 1;, de a #kep-nél ez az érték 0!*/
+    flex-shrink: 1; /*Ha túl nagy lenne a kép, akkor összenyomja a képet, és a válaszokat nagyítja*/
 }
+
+/*Ha mindkét elemhez flex-grow: 1 és flex-shrink:1 szabályokat állítanánk be, egyenlő arányban növekednének illetve csökkennének.*/
 
 #kep {
     overflow: hidden; /*Felesleges, a kép túlnyúló részét rejtené el; de így nem lehet görgetni*/
@@ -46,8 +48,8 @@ div {
 
 #vezerlo {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: row; /*Egymás mellé rakja a gombokat*/
+    justify-content: space-between; /*Az oldal két végére rakja őket*/
 }
 
 .gomb {
@@ -72,4 +74,23 @@ div {
 .kattinthato_rossz:hover {
     background-color: green;
     color: white;
+}
+
+@media screen and (max-width: 786px) {
+    body {
+        background-color: red;
+    }
+
+    #kozepso{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #kep{
+        order: 1;
+    }
+
+    #valaszok{
+        order: 2;
+    }
 }
