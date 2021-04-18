@@ -35,15 +35,16 @@ var kerdesMegjelenites = function (kerdesSzama) {
     valasz3.innerText = kerdesek[kerdesSzama].answer3;
 }
 
+function elore() {
+    kerdesSorszam++;
+}
+
 window.onload = () => {
     console.log("Sikeres betöltés");
     letoltes();
 }
 
-function sorszamNovelo() {
-    kerdesSorszam++;
-}
+console.log(kerdesSorszam);
 
-function sorszamCsokkento() {
-    kerdesSorszam--;
-}
+var eloreLepes = document.getElementById("elore");
+eloreLepes.addEventListener("click", elore());
