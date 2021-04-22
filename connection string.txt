@@ -1,0 +1,1 @@
+Data Source=sql.2rpi.hu,7000;Initial Catalog=hajosteszt;Persist Security Info=True;User ID=hallgato;Password=Password123

@@ -68,16 +68,7 @@ div {
 .kattinthato:hover {
     background-color: fuchsia;
     color: white;
-}
-
-.kattinthato_jo:hover {
-    background-color: fuchsia;
-    color: white;
-}
-
-.kattinthato_rossz:hover {
-    background-color: green;
-    color: white;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 786px) {

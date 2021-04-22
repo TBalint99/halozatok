@@ -1,71 +1,70 @@
-﻿var kerdesek;
-var kerdesSorszam = 0;
+﻿
+var kerdesSorszam = 1;
+var helyesValasz;
 
-function letoltes() {
-    fetch('/questions.json')
-        .then(response => response.json())
-        .then(data => letoltesBefejezodott(data));
-}
+function kerdesBetoltes(id) {
+    fetch(`/questions/${id}`)
+        .then(response => {
+            if (!response.ok) {
+                console.error(`Hibás válasz: ${response.status}`)
+            }
+            else {
+                return response.json()
+            }
+        })
+        .then(data => kerdesMegjelenites(data));
+} 
 
-function letoltesBefejezodott(d) {
-    console.log("Sikeres letöltés");
-    console.log(d);
-    kerdesek = d;
-    kerdesMegjelenites(kerdesSorszam);
-}
+function kerdesMegjelenites(kerdes) {
+    console.log(kerdes);
+    document.getElementById("kerdes_szoveg").innerText = kerdes.questionText
+    document.getElementById("valasz1").innerText = kerdes.answer1
+    document.getElementById("valasz2").innerText = kerdes.answer2
+    document.getElementById("valasz3").innerText = kerdes.answer3
+    document.getElementById("kep1").src = "https://szoft1.comeback.hu/hajo/" + kerdes.image;
 
-var kerdesMegjelenites = function (kerdesSzama) {
-
-    let kerdes_szoveg = document.getElementById("kerdes_szoveg");
-    let kep = document.getElementById("kep1");
-    let valasz1 = document.getElementById("valasz1");
-    let valasz2 = document.getElementById("valasz2");
-    let valasz3 = document.getElementById("valasz3");
-
-    kerdes_szoveg.innerHTML = kerdesek[kerdesSzama].questionText;
-
+    //itt kezeljük le, hogy eltűntesse a blokkot, ha nincs kép, és visszategye, ha van
     var kepDiv = document.getElementById("kep");
-    if (kerdesek[kerdesSzama].image != "") {
+    if (kerdes.image != "") {
         if (kepDiv.style.display == "none") {
             kepDiv.style.display = "block";
         }
-        kep.src = "https://szoft1.comeback.hu/hajo/" + kerdesek[kerdesSzama].image;
+        kep.src = "https://szoft1.comeback.hu/hajo/" + kerdes.image;
     }
     else {
         kepDiv.style.display = "none";
     }
 
-    valasz1.innerText = kerdesek[kerdesSzama].answer1;
-    valasz2.innerText = kerdesek[kerdesSzama].answer2;
-    valasz3.innerText = kerdesek[kerdesSzama].answer3;
+    helyesValasz = kerdes.correctAnswer;
 }
 
 
 window.onload = () => {
     console.log("Sikeres betöltés");
-    letoltes();
+    kerdesBetoltes(kerdesSorszam);
 }
 
 var eloreLepes = document.getElementById("elore");
 eloreLepes.addEventListener("click", function () {
 
     kerdesSorszam++;
-
-    if (kerdesSorszam > 2) {
-        kerdesSorszam = 0;
-    }
-
-    letoltes();
+    kerdesBetoltes(kerdesSorszam);
 });
 
 var visszaLepes = document.getElementById("vissza");
 visszaLepes.addEventListener("click", function () {
 
     kerdesSorszam--;
-
-    if (kerdesSorszam < 0) {
-        kerdesSorszam = 2;
-    }
-
-    letoltes();
+    kerdesBetoltes(kerdesSorszam);
 });
+
+//var elsoDiv = document.getElementById("valasz1");
+//elsoDiv.addEventListener("click", function () {
+
+//    if (helyesValasz == 1) {
+//        elsoDiv.style.backgroundColor = "green";
+//    }
+//    else {
+//        elsoDiv.style.backgroundColor = "red";
+//    }
+//})
