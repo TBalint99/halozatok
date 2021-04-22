@@ -57,6 +57,10 @@ div {
     width: 80px;
 }
 
+.gomb:hover {
+    cursor: pointer;
+}
+
 .kerdes{
 
 }
@@ -94,3 +98,4 @@ div {
         order: 2;
     }
 }
+

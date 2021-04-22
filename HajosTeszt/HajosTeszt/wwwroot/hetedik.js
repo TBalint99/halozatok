@@ -23,28 +23,49 @@ var kerdesMegjelenites = function (kerdesSzama) {
     let valasz3 = document.getElementById("valasz3");
 
     kerdes_szoveg.innerHTML = kerdesek[kerdesSzama].questionText;
+
+    var kepDiv = document.getElementById("kep");
     if (kerdesek[kerdesSzama].image != "") {
+        if (kepDiv.style.display == "none") {
+            kepDiv.style.display = "block";
+        }
         kep.src = "https://szoft1.comeback.hu/hajo/" + kerdesek[kerdesSzama].image;
     }
     else {
-        var eltavolit = document.getElementById("kep");
-        eltavolit.remove();
+        kepDiv.style.display = "none";
     }
+
     valasz1.innerText = kerdesek[kerdesSzama].answer1;
     valasz2.innerText = kerdesek[kerdesSzama].answer2;
     valasz3.innerText = kerdesek[kerdesSzama].answer3;
 }
 
-function elore() {
-    kerdesSorszam++;
-}
 
 window.onload = () => {
     console.log("Sikeres betöltés");
     letoltes();
 }
 
-console.log(kerdesSorszam);
-
 var eloreLepes = document.getElementById("elore");
-eloreLepes.addEventListener("click", elore());
+eloreLepes.addEventListener("click", function () {
+
+    kerdesSorszam++;
+
+    if (kerdesSorszam > 2) {
+        kerdesSorszam = 0;
+    }
+
+    letoltes();
+});
+
+var visszaLepes = document.getElementById("vissza");
+visszaLepes.addEventListener("click", function () {
+
+    kerdesSorszam--;
+
+    if (kerdesSorszam < 0) {
+        kerdesSorszam = 2;
+    }
+
+    letoltes();
+});
