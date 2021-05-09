@@ -71,6 +71,14 @@ div {
     cursor: pointer;
 }
 
+.jo {
+    background-color: green;
+}
+
+.rossz {
+    background-color: red;
+}
+
 @media screen and (max-width: 786px) {
     body {
         background-color: red;

@@ -16,6 +16,8 @@ function kerdesBetoltes(id) {
 } 
 
 function kerdesMegjelenites(kerdes) {
+
+    if (!kerdes) return;
     console.log(kerdes);
     document.getElementById("kerdes_szoveg").innerText = kerdes.questionText
     document.getElementById("valasz1").innerText = kerdes.answer1
@@ -35,7 +37,41 @@ function kerdesMegjelenites(kerdes) {
         kepDiv.style.display = "none";
     }
 
+    //válaszok helyességének jelölése
     helyesValasz = kerdes.correctAnswer;
+
+    var elsoValasz = document.getElementById("valasz1");
+    elsoValasz.classList.remove("jo", "rossz");
+    elsoValasz.addEventListener("click", function () {
+        if (helyesValasz === 1) {
+            elsoValasz.classList.add("jo");
+        }
+        else {
+            elsoValasz.classList.add("rossz");
+        }
+    })
+
+    var masodikValasz = document.getElementById("valasz2");
+    masodikValasz.classList.remove("jo", "rossz");
+    masodikValasz.addEventListener("click", function () {
+        if (helyesValasz === 2) {
+            masodikValasz.classList.add("jo");
+        }
+        else {
+            masodikValasz.classList.add("rossz");
+        }
+    })
+
+    var harmadikValasz = document.getElementById("valasz3");
+    harmadikValasz.classList.remove("jo", "rossz");
+    harmadikValasz.addEventListener("click", function () {
+        if (helyesValasz === 3) {
+            harmadikValasz.classList.add("jo");
+        }
+        else {
+            harmadikValasz.classList.add("rossz");
+        }
+    })
 }
 
 
@@ -58,13 +94,3 @@ visszaLepes.addEventListener("click", function () {
     kerdesBetoltes(kerdesSorszam);
 });
 
-//var elsoDiv = document.getElementById("valasz1");
-//elsoDiv.addEventListener("click", function () {
-
-//    if (helyesValasz == 1) {
-//        elsoDiv.style.backgroundColor = "green";
-//    }
-//    else {
-//        elsoDiv.style.backgroundColor = "red";
-//    }
-//})
