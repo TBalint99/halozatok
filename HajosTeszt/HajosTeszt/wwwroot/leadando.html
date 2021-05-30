@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Programozási nyelvek</title>
+    <link rel="stylesheet" href="leadando.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Signika:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <form>
+            <div id="topProgLangs"></div>
+            <div id="langCount"></div>
+            <div class="inputField">
+                <input id="progLang" type="text" placeholder="Szerinted melyik programozási nyelvet éri meg tanulni?" />
+            </div>
+            <button id="addButton">Nyelv felvétele</button>
+            <button id="deleteButton">Nyelv törlése</button>
+            <button id="refreshButton">Frissítés</button>
+        </form>
+    </div>
+        <script>
+            //Nyelvek listázása
+            function listing(langList) {
+                console.log(langList);
+                for (let i = 0; i < langList.length; i++) {
+                    let newElement = document.createElement("p");
+                    newElement.classList.add("progLangs");
+                    newElement.textContent = JSON.stringify(langList[i].programmingLanguage).replace(/(^"|"$)/g, '');
+                    newElement.id = JSON.stringify(langList[i].id);
+                    document.getElementById("topProgLangs").appendChild(newElement);
+                }
+            }
+
+            //Nyelvek száma
+            function counter(count) {
+                document.getElementById("langCount").innerHTML += `<p>Nyelvek száma összesen: ${count}</p>`;
+            }
+
+            //Betöltés
+            window.onload = (event) => {
+                fetch("api/programming-languages")
+                    .then(response => response.json())
+                    .then(data => listing(data));
+
+                fetch("api/programming-languages/all")
+                    .then(response => response.json())
+                    .then(data => counter(data));
+
+            };
+
+            //Új nyelv hozzáadása
+            document.getElementById("addButton").addEventListener("click", () => {
+                let newLanguage = {
+                    programmingLanguage: document.getElementById("progLang").value
+                }
+
+                if (document.getElementById("progLang").value != "") {
+                    fetch("api/programming-languages",
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(newLanguage)
+                        }
+                    ).then(x => {
+                        if (x.ok) {
+                            alert("Sikeres művelet! :)");
+                        }
+                        else {
+                            alert("Sikertelen művelet! :(");
+                        }
+                    });
+                }
+                else {
+                    alert("Nem írtál be értéket. Kérlek adj meg egy nyelvet!")
+                }
+            });
+
+            //Frissítés
+            document.getElementById("refreshButton").addEventListener("click", () => {
+                document.getElementById("topProgLangs").innerHTML = "";
+
+                fetch("api/programming-languages")
+                    .then(response => response.json())
+                    .then(data => listing(data));
+
+                fetch("api/programming-languages/all")
+                    .then(response => response.json())
+                    .then(data => counter(data));
+            });
+
+            //Törlés
+            document.getElementById("deleteButton").addEventListener("click", () => {
+                //Bejárjuk a progLangs osztálokat, és tároljuk a törlendő nyelv id-ját
+                let deleteElementID = "";
+
+                let progLangs = document.getElementsByClassName("progLangs");
+                for (let i = 0; i < progLangs.length; i++) {
+                    if (progLangs[i].textContent == document.getElementById("progLang").value) {
+                        //alert("siker!");
+                        deleteElementID = progLangs[i].id;
+                        //alert(deleteElementID);
+                        alert("Sikeres törlés");
+                    }
+                }
+
+                //A törlés nem mindig működik elsőre, ennek az okát nem tudtam megfejteni
+                fetch("api/programming-languages/" + deleteElementID,
+                    {
+                        method: 'DELETE'
+                    }
+                ).then(response => response.text());
+            });
+
+        </script>
+</body>
+</html>
